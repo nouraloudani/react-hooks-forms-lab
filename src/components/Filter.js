@@ -1,9 +1,19 @@
-import React from "react";
+function Filter({ search, onSearchChange, onCategoryChange }) {
+  function handleSearchChange(event) {
+    // we could pass up the whole event object via onSearchChange
+    // but passing *only* the value makes the data easier to work with in the parent
+    onSearchChange(event.target.value);
+  }
 
-function Filter({ onCategoryChange }) {
   return (
     <div className="Filter">
-      <input type="text" name="search" placeholder="Search..." />
+      <input
+        type="text"
+        name="search"
+        placeholder="On Search..."
+        value={search}
+        onChange={onSearchChange}
+      />
       <select name="filter" onChange={onCategoryChange}>
         <option value="All">Filter by category</option>
         <option value="Produce">Produce</option>
@@ -13,5 +23,4 @@ function Filter({ onCategoryChange }) {
     </div>
   );
 }
-
 export default Filter;
